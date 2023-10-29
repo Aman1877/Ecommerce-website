@@ -7,10 +7,14 @@ import moment from "moment";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+  console.log(orders, "++");
   const [auth, setAuth] = useAuth();
   const getOrders = async () => {
     try {
-      const { data } = await axios.get("/api/v1/auth/orders");
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/api/v1/auth/orders`
+      );
+      console.log("data: ", data);
       setOrders(data);
     } catch (error) {
       console.log(error);
@@ -38,7 +42,7 @@ const Orders = () => {
                         <th scope="col">#</th>
                         <th scope="col">Status</th>
                         <th scope="col">Buyer</th>
-                        <th scope="col"> date</th>
+                        <th scope="col">date</th>
                         <th scope="col">Payment</th>
                         <th scope="col">Quantity</th>
                       </tr>
