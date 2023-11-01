@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTheme } from "../context/theme";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import axios from "axios";
@@ -7,6 +8,7 @@ import { Checkbox, Radio } from "antd";
 import { Prices } from "../components/Prices";
 import { useCart } from "../context/cart";
 import { AiOutlineReload } from "react-icons/ai";
+import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 import "../styles/Homepage.css";
 
 const HomePage = () => {
@@ -19,6 +21,12 @@ const HomePage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [theme, setTheme] = useTheme();
+
+  // Handle theme
+  const handleTheme = () => {
+    setTheme((prevState) => (prevState === "light" ? "dark" : "light"));
+  };
 
   // Get all category
   const getAllCategory = async () => {
@@ -133,6 +141,14 @@ const HomePage = () => {
       />
       {/* banner image */}
       <div className="container-fluid row mt-3 home-page">
+        {/* Theme  */}
+        <div className="theme-btn" onClick={handleTheme}>
+          {theme === "light" ? (
+            <BsFillMoonStarsFill size={30} />
+          ) : (
+            <BsFillSunFill size={30} />
+          )}
+        </div>
         <div className="col-md-3 filters">
           <h4 className="text-center">Filter By Category</h4>
           <div className="d-flex flex-column ">

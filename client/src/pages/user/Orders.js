@@ -7,14 +7,12 @@ import moment from "moment";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
-  console.log(orders, "++");
   const [auth, setAuth] = useAuth();
   const getOrders = async () => {
     try {
       const { data } = await axios.get(
         `${process.env.REACT_APP_API}/api/v1/auth/orders`
       );
-      console.log("data: ", data);
       setOrders(data);
     } catch (error) {
       console.log(error);

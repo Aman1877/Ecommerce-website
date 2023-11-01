@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/auth";
 import { SearchProvider } from "./context/search";
 import { CartProvider } from "./context/cart";
+import { ThemeProvider } from "./context/theme";
 
 import "antd/dist/reset.css";
 
@@ -16,7 +17,9 @@ root.render(
     <SearchProvider>
       <CartProvider>
         <BrowserRouter>
-          <App />
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
         </BrowserRouter>
       </CartProvider>
     </SearchProvider>
